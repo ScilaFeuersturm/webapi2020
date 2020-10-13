@@ -25,6 +25,8 @@ namespace Controllers{
             }
         }
 
+        
+
         [HttpGet("login")]
         public async Task<ActionResult<UserEntity>> GetUser(UserModel userModel){
             var listUsers = await getListUsers();
@@ -90,11 +92,11 @@ namespace Controllers{
 
         private async Task<List<UserEntity>> getListUsers(){
             var listUsers = new List<UserEntity>(){
-                new UserEntity(){Id = 1, Name = "Arnham Holybridge, Amelie", Username = "Amy", Password = "TokenizedPasword"},
-                new UserEntity(){Id = 2, Name = "Holybridge, Alastair Jr.", Username = "Dada", Password = "AnotherPassword"},
-                new UserEntity(){Id = 3, Name = "Holybridge, Allegra", Username = "Myself", Password = "AnotherPassword022"},
-                new UserEntity(){Id = 4, Name = "Holybridge, Hugh ", Username = "Uncle", Password = "AnotherPassword023"},
-                new UserEntity(){Id = 5, Name = "Holybridge, Alastair Sr.", Username = "Grampa", Password = "AnotherPassword090"},
+                new UserEntity(){Id = 1, Name = "Arnham Holybridge, Amelie", Username = "Amelie", Password = "TokenizedPasword"},
+                new UserEntity(){Id = 2, Name = "Holybridge, Alastair Jr.", Username = "Alastair", Password = "AnotherPassword"},
+                new UserEntity(){Id = 3, Name = "Holybridge, Allegra", Username = "Allegra", Password = "AnotherPassword022"},
+                new UserEntity(){Id = 4, Name = "Holybridge, Hugh ", Username = "Hugh", Password = "AnotherPassword023"},
+                new UserEntity(){Id = 5, Name = "Holybridge, Alastair Sr.", Username = "Alastair1", Password = "AnotherPassword090"},
 
 
             };
