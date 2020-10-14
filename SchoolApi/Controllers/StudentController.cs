@@ -17,6 +17,12 @@ namespace Controllers{
     [ApiController]
 
     public class StudentController : ControllerBase{
+        private readonly SchoolContext _context;
+
+         public StudentController(SchoolContext context)
+        {
+        _context = context;
+        }
 
 
          [HttpGet("getStudentList")]
@@ -43,5 +49,15 @@ namespace Controllers{
             return listUsers;
 
         }
+
+        //Cambiar las listas harcodeadas por esto
+            [HttpPost]
+            public async Task<ActionResult<UserEntity>> PostNewUser(UserEntity userEntity)
+            {
+                _context.UserItems.Add(userEntity);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(PostNewUser), new { id = userEntity.Id }, userEntity);
+            }
     }
 }
