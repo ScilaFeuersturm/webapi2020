@@ -9,6 +9,10 @@ using Models;
 
 namespace Controllers{
 
+    /* Modelo para generacion automatica de controllers
+    dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem 
+    -dc TodoContext -outDir Controllers*/
+
     [Route("api/[controller]")]
     [ApiController]
 
