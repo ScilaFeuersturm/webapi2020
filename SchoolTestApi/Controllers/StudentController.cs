@@ -73,7 +73,6 @@ namespace Controllers{
         return NoContent();
     }
 //https://docs.microsoft.com/es-es/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code
-//Seguir este ejemplo https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples/3.0/TodoApi    
     
     [HttpPost]
     public async Task<ActionResult<StudentEntity>> CreateTodoItem(StudentEntity studentItem)
