@@ -11,7 +11,7 @@ namespace Models
 
         }
 
-        public DbSet<UserEntity> UserItems { get; set; }
+        public DbSet<TeacherEntity> TeachersItems { get; set; }
         public DbSet<StudentEntity> StudentItems { get; set; }
     }
 }

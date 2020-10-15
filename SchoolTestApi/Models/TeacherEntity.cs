@@ -1,5 +1,5 @@
 namespace Models{
-    public class StudentEntity{
+    public class TeacherEntity{
         public int Id{get;set;}
         public string Name{get;set;}
         public string Lastname{get;set;}
@@ -9,6 +9,8 @@ namespace Models{
         public int PhoneNumber{get;set;}
         public string EmergencyContactName{get;set;}
         public int EmergencyContactNumber{get;set;}
+
+        //public List<StudentEntity> students{set; get;}
 
 
     }

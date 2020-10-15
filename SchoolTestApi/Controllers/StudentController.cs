@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 
@@ -23,41 +24,98 @@ namespace Controllers{
         {
         _context = context;
         }
+        [HttpGet]
+    public async Task<ActionResult<IEnumerable<StudentEntity>>> GetStudents()
+    {
+        return await _context.StudentItems
+            .Select(x => studentDTO(x))
+            .ToListAsync();
+    }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<StudentEntity>> GetStudents(long id)
+    {
+        var studentItem = await _context.StudentItems.FindAsync(id);
 
-         [HttpGet("getStudentList")]
-        public async Task<ActionResult<List<UserEntity>>> GetAll(){
-
-            var listUsers = await getListUsers();
-            if(listUsers.Count < 0){
-                return NotFound();
-            }else{
-                return listUsers;
-            }
+        if (studentItem == null)
+        {
+            return NotFound();
         }
 
+        return studentDTO(studentItem);
+    }
 
-        private async Task<List<UserEntity>> getListUsers(){
-            var listUsers = new List<UserEntity>(){
-                new UserEntity(){Id = 1, Name = "Amelie", Username = "Amelie", Password = "AArnham"},
-                new UserEntity(){Id = 2, Name = "Alastair Jr.", Username = "Alastair", Password = "AHolybridge"},
-                new UserEntity(){Id = 3, Name = "Allegra", Username = "Allegra", Password = "AHolybridge"},
-                new UserEntity(){Id = 4, Name = "Hugh ", Username = "Hugh", Password = "HHolybridge"},
-                new UserEntity(){Id = 5, Name = "Alastair Sr.", Username = "Alastair1", Password = "AHolybridge"}
-            };
-
-            return listUsers;
-
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateTodoItem(long id, StudentEntity studentItem)
+    {
+        if (id != studentItem.Id)
+        {
+            return BadRequest();
         }
 
-        //Cambiar las listas harcodeadas por esto
-            [HttpPost]
-            public async Task<ActionResult<UserEntity>> PostNewUser(UserEntity userEntity)
-            {
-                _context.UserItems.Add(userEntity);
-                await _context.SaveChangesAsync();
+        var todoItem = await _context.StudentItems.FindAsync(id);
+        if (todoItem == null)
+        {
+            return NotFound();
+        }
 
-                return CreatedAtAction(nameof(PostNewUser), new { id = userEntity.Id }, userEntity);
-            }
+        todoItem.Name = studentItem.Name;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException) when (!StudentExists(id))
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+//https://docs.microsoft.com/es-es/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code
+//Seguir este ejemplo https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples/3.0/TodoApi    
+    
+    [HttpPost]
+    public async Task<ActionResult<StudentEntity>> CreateTodoItem(StudentEntity studentItem)
+    {
+        var todoItem = new StudentEntity
+        {
+            Name = studentItem.Name
+        };
+
+        _context.StudentItems.Add(todoItem);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(
+            nameof(GetStudents),
+            new { id = todoItem.Id },
+            studentDTO(todoItem));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTodoItem(long id)
+    {
+        var todoItem = await _context.StudentItems.FindAsync(id);
+
+        if (todoItem == null)
+        {
+            return NotFound();
+        }
+
+        _context.StudentItems.Remove(todoItem);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    private bool StudentExists(long id) =>
+         _context.StudentItems.Any(e => e.Id == id);
+
+    private static StudentEntity studentDTO(StudentEntity studentItem) =>
+        new StudentEntity
+        {
+            Id = studentItem.Id,
+            Name = studentItem.Name,
+        };       
     }
 }
