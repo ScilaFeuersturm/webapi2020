@@ -73,7 +73,15 @@ namespace Controllers{
     {
         var teacher = new TeacherEntity
         {
-            Name = teacherItem.Name
+            Id = teacherItem.Id,
+            Name = teacherItem.Name,
+            Lastname = teacherItem.Lastname,
+            User = teacherItem.User,
+            Password = teacherItem.Password,
+            Headquarter = teacherItem.Headquarter,
+            PhoneNumber = teacherItem.PhoneNumber,
+            EmergencyContactName = teacherItem.EmergencyContactName, 
+            EmergencyContactNumber = teacherItem.EmergencyContactNumber,
         };
 
         _context.TeachersItems.Add(teacher);
