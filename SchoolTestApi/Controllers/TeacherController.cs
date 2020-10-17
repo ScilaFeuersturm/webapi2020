@@ -21,7 +21,7 @@ namespace Controllers{
         }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TeacherEntity>>> GetStudents()
+    public async Task<ActionResult<IEnumerable<TeacherEntity>>> GetTeachers()
     {
         return await _context.TeachersItems
             .Select(x => teacherDTO(x))
@@ -88,7 +88,7 @@ namespace Controllers{
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(
-            nameof(GetStudents),
+            nameof(GetTeachers),
             new { id = teacher.Id },
             teacherDTO(teacher));
     }
