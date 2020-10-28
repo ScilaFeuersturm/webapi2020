@@ -74,11 +74,10 @@ namespace Controllers{
 //https://docs.microsoft.com/es-es/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code
     
     [HttpPost]
-    public async Task<ActionResult<StudentEntity>> CreateStudent(StudentEntity studentItem)
+    public async Task<ActionResult<StudentEntity>> CreateStudent(NewStudentEntityDTO studentItem)
     {
         var student = new StudentEntity
         {
-            Id = studentItem.Id,
             Name = studentItem.Name,
             Lastname = studentItem.Lastname,
             User = studentItem.User,
@@ -124,7 +123,6 @@ namespace Controllers{
             Name = studentItem.Name,
             Lastname = studentItem.Lastname,
             User = studentItem.User,
-            Password = studentItem.Password,
             Headquarter = studentItem.Headquarter,
             PhoneNumber = studentItem.PhoneNumber,
             EmergencyContactName = studentItem.EmergencyContactName, 

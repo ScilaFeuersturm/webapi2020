@@ -1,6 +1,6 @@
+
 namespace Models{
-    public class StudentEntity{
-        public int Id{get;set;}
+     public class NewStudentEntityDTO{
         public string Name{get;set;}
         public string Lastname{get;set;}
         public string User{get;set;}
@@ -9,7 +9,6 @@ namespace Models{
         public string PhoneNumber{get;set;}
         public string EmergencyContactName{get;set;}
         public string EmergencyContactNumber{get;set;}
-
 
     }
 }

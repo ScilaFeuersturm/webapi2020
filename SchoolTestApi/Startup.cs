@@ -29,7 +29,7 @@ namespace SchoolTestApi
         public void ConfigureServices(IServiceCollection services)
         {
         services.AddDbContext<SchoolContext>(opt =>
-               opt.UseInMemoryDatabase("SchoolDatabase"));
+               opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -15,5 +15,6 @@ namespace Models
         public DbSet<StudentEntity> StudentItems { get; set; }
         public DbSet<NewsEntity> NewsItems { get; set; }
         public DbSet<ContactEntity> ContactItems { get; set; }
+        public DbSet<HeadquarterEntity> HeadquarterItems { get; set; }
     }
 }

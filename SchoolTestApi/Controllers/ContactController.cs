@@ -40,11 +40,10 @@ public async Task<ActionResult<ContactEntity>> GetContact(long id)
     return contactDTO(contact);
 }
  [HttpPost]
-    public async Task<ActionResult<ContactEntity>> CreateContact(ContactEntity contactItem)
+    public async Task<ActionResult<ContactEntity>> CreateContact(NewContactEntityDTO contactItem)
     {
         var contact = new ContactEntity
         {
-            Id = contactItem.Id,
             Name = contactItem.Name,
             Lastname =contactItem.Lastname,
             Email = contactItem.Email,

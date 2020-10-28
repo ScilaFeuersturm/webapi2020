@@ -64,16 +64,18 @@ namespace Controllers{
         {
             return NotFound();
         }
+    
 
         return NoContent();
     }
     
     [HttpPost]
-    public async Task<ActionResult<TeacherEntity>> CreateTeacher(TeacherEntity teacherItem)
+    public async Task<ActionResult<TeacherEntity>> CreateTeacher(NewTeacherEntityDTO teacherItem)
     {
         var teacher = new TeacherEntity
         {
-            Id = teacherItem.Id,
+
+            
             Name = teacherItem.Name,
             Lastname = teacherItem.Lastname,
             User = teacherItem.User,
@@ -119,7 +121,6 @@ namespace Controllers{
             Name = teacherItem.Name,
             Lastname = teacherItem.Lastname,
             User = teacherItem.User,
-            Password = teacherItem.Password,
             Headquarter = teacherItem.Headquarter,
             PhoneNumber = teacherItem.PhoneNumber,
             EmergencyContactName = teacherItem.EmergencyContactName, 
@@ -127,4 +128,4 @@ namespace Controllers{
         };       
     }
       
-    }
+}

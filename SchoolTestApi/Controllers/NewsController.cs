@@ -39,11 +39,10 @@ public async Task<ActionResult<NewsEntity>> GetNews(long id)
     return newsDTO(newsItem);
 }
  [HttpPost]
-    public async Task<ActionResult<NewsEntity>> CreateNews(NewsEntity newsItem)
+    public async Task<ActionResult<NewsEntity>> CreateNews(NewNewsEntityDTO newsItem)
     {
         var news = new NewsEntity
         {
-            Id = newsItem.Id,
             Title = newsItem.Title,
             Subtitle = newsItem.Subtitle,
             Content = newsItem.Content,

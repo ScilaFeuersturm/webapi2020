@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Models{
     public class TeacherEntity{
         public int Id{get;set;}
@@ -6,11 +8,11 @@ namespace Models{
         public string User{get;set;}
         public string Password{get;set;}
         public string Headquarter{get;set;}
-        public int PhoneNumber{get;set;}
+        public string PhoneNumber{get;set;}
         public string EmergencyContactName{get;set;}
-        public int EmergencyContactNumber{get;set;}
+        public string EmergencyContactNumber{get;set;}
 
-        //public List<StudentEntity> students{set; get;}
+        public List<StudentEntity> students{set; get;}
 
 
     }
