@@ -28,7 +28,7 @@ namespace Controllers{
             .ToListAsync();
     }
     [HttpGet("{id}")]
-    public async Task<ActionResult<TeacherEntity>> GetTeachers(long id)
+    public async Task<ActionResult<TeacherEntity>> GetTeachers(int id)
     {
         var teacherItem = await _context.TeachersItems.FindAsync(id);
 
@@ -41,7 +41,7 @@ namespace Controllers{
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateTeacher(long id, TeacherEntity teachertItem)
+    public async Task<IActionResult> UpdateTeacher(int id, TeacherEntity teachertItem)
     {
         if (id != teachertItem.Id)
         {
@@ -96,7 +96,7 @@ namespace Controllers{
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteTeacher(long id)
+    public async Task<IActionResult> DeleteTeacher(int id)
     {
         var teacher = await _context.TeachersItems.FindAsync(id);
 
@@ -111,7 +111,7 @@ namespace Controllers{
         return NoContent();
     }
 
-    private bool TeacherExists(long id) =>
+    private bool TeacherExists(int id) =>
          _context.TeachersItems.Any(e => e.Id == id);
 
     private static TeacherEntity teacherDTO(TeacherEntity teacherItem) =>

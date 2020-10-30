@@ -32,7 +32,7 @@ namespace Controllers{
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<StudentEntity>> GetStudents(long id)
+    public async Task<ActionResult<StudentEntity>> GetStudents(int id)
     {
         var studentItem = await _context.StudentItems.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace Controllers{
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateStudent(long id, StudentEntity studentItem)
+    public async Task<IActionResult> UpdateStudent(int id, StudentEntity studentItem)
     {
         if (id != studentItem.Id)
         {
@@ -98,7 +98,7 @@ namespace Controllers{
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteStudent(long id)
+    public async Task<IActionResult> DeleteStudent(int id)
     {
         var student = await _context.StudentItems.FindAsync(id);
 
@@ -113,7 +113,7 @@ namespace Controllers{
         return NoContent();
     }
 
-    private bool StudentExists(long id) =>
+    private bool StudentExists(int id) =>
          _context.StudentItems.Any(e => e.Id == id);
 
     private static StudentEntity studentDTO(StudentEntity studentItem) =>

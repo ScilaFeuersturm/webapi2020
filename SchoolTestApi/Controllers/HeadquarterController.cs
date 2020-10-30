@@ -28,7 +28,7 @@ public HeadquarterController(SchoolContext context)
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<HeadquarterEntity>> GetHeadquarter(long id)
+    public async Task<ActionResult<HeadquarterEntity>> GetHeadquarter(int id)
     {
         var headquarterItem = await _context.HeadquarterItems.FindAsync(id);
 
@@ -41,7 +41,7 @@ public HeadquarterController(SchoolContext context)
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateHeadquarter(long id, HeadquarterEntity headquarterItem)
+    public async Task<IActionResult> UpdateHeadquarter(int id, HeadquarterEntity headquarterItem)
     {
         if (id != headquarterItem.Id)
         {
@@ -88,7 +88,7 @@ public HeadquarterController(SchoolContext context)
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteHeadquarter(long id)
+    public async Task<IActionResult> DeleteHeadquarter(int id)
     {
         var headquarter = await _context.HeadquarterItems.FindAsync(id);
 
@@ -103,7 +103,7 @@ public HeadquarterController(SchoolContext context)
         return NoContent();
     }
 
-    private bool HeadquarterExists(long id) =>
+    private bool HeadquarterExists(int id) =>
          _context.HeadquarterItems.Any(e => e.Id == id);
 
     private static HeadquarterEntity headquarterDTO(HeadquarterEntity headquarterItem) =>

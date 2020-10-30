@@ -28,7 +28,7 @@ public async Task<ActionResult<IEnumerable<ContactEntity>>> GetContact()
         .ToListAsync();
 }
 [HttpGet("{id}")]
-public async Task<ActionResult<ContactEntity>> GetContact(long id)
+public async Task<ActionResult<ContactEntity>> GetContact(int id)
 {
     var contact = await _context.ContactItems.FindAsync(id);
 
@@ -61,7 +61,7 @@ public async Task<ActionResult<ContactEntity>> GetContact(long id)
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteContact(long id)
+    public async Task<IActionResult> DeleteContact(int id)
     {
         var contact = await _context.ContactItems.FindAsync(id);
 
@@ -76,7 +76,7 @@ public async Task<ActionResult<ContactEntity>> GetContact(long id)
         return NoContent();
     }
 
-private bool ContactExists(long id) =>
+private bool ContactExists(int id) =>
          _context.ContactItems.Any(e => e.Id == id);
 
     private static ContactEntity contactDTO(ContactEntity ContactItem) =>

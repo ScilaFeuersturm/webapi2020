@@ -27,7 +27,7 @@ public async Task<ActionResult<IEnumerable<NewsEntity>>> GetNews()
         .ToListAsync();
 }
 [HttpGet("{id}")]
-public async Task<ActionResult<NewsEntity>> GetNews(long id)
+public async Task<ActionResult<NewsEntity>> GetNews(int id)
 {
     var newsItem = await _context.NewsItems.FindAsync(id);
 
@@ -58,7 +58,7 @@ public async Task<ActionResult<NewsEntity>> GetNews(long id)
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteNews(long id)
+    public async Task<IActionResult> DeleteNews(int id)
     {
         var news = await _context.NewsItems.FindAsync(id);
 
@@ -73,7 +73,7 @@ public async Task<ActionResult<NewsEntity>> GetNews(long id)
         return NoContent();
     }
 
-    private bool NewsExists(long id) =>
+    private bool NewsExists(int id) =>
          _context.NewsItems.Any(e => e.Id == id);
 
     private static NewsEntity newsDTO(NewsEntity newsItem) =>
